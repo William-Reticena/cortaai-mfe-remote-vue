@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+
+:root {
+  --status-open: #16a34a;
+}
