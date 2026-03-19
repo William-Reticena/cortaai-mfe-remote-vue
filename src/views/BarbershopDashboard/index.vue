@@ -1,5 +1,5 @@
 <template>
-  <SelectButton v-model="value" :options="options" />
+  <SelectButton v-model="value" :options="options" fluid />
 
   <template v-if="value === 'Informações'">
     <Card>
@@ -75,6 +75,28 @@
         </Box>
       </template>
     </Card>
+  </template>
+
+  <template v-else-if="value === 'Agendamentos'">
+    <Box> Agendamentos</Box>
+
+    <Box class="flex flex-col gap-4">
+      <For :each="[1, 2, 3, 4, 5]" :getKey="(item) => item">
+        <template #default="{ item }">
+          <Card>
+            <template #content>
+              <Box class="flex flex-col gap-4">
+                <Box class="flex items-center gap-4"> Agendamento {{ item }} </Box>
+                <Box class="flex items-center gap-4">
+                  <Box>Cliente {{ item }}</Box>
+                  <StatusBadge />
+                </Box>
+              </Box>
+            </template>
+          </Card>
+        </template>
+      </For>
+    </Box>
   </template>
 </template>
 
