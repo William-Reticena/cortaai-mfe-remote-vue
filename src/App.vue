@@ -1,7 +1,7 @@
 <template>
-  <BarbershopDashboard msg="Barbershop Dashboard" />
+  <RouterView />
 </template>
 
 <script setup lang="ts">
-import BarbershopDashboard from './views/BarbershopDashboard/index.vue';
+import { RouterView } from 'vue-router';
 </script>
