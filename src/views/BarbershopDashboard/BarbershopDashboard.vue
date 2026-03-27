@@ -3,9 +3,11 @@
     <SelectButton v-model="value" :options="options" fluid class="mb-6" />
 
     <template v-if="value === 'Informações'">
-      <InfoSection />
+      <template v-if="barbershopData">
+        <InfoSection :details="barbershopData.barbershopDetails" />
 
-      <BarberSection />
+        <BarberSection />
+      </template>
     </template>
 
     <template v-else-if="value === 'Serviços'">
@@ -26,6 +28,8 @@
 import { ref } from 'vue';
 import { SelectButton } from 'primevue';
 
+import { useBarbershopDetails } from '@/composables/useBarbers';
+
 import { Box } from '@/shared/common';
 import BarberSection from './components/BarberSection/BarberSection.vue';
 import InfoSection from './components/InfoSection/InfoSection.vue';
@@ -35,4 +39,6 @@ import ServiceSection from './components/ServiceSection/ServiceSection.vue';
 
 const value = ref('Informações');
 const options = ['Informações', 'Serviços', 'Agendamentos'];
+
+const { data: barbershopData } = useBarbershopDetails(1);
 </script>

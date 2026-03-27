@@ -1,6 +1,7 @@
 import { createApp, type App as VueApp } from 'vue';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
+import { VueQueryPlugin } from '@tanstack/vue-query';
 import App from './App.vue';
 
 import './style.css';
@@ -17,6 +18,7 @@ export function mount({ container }: MountProps) {
 
   app = createApp(App);
   app.use(router);
+  app.use(VueQueryPlugin);
   app.use(PrimeVue, {
     theme: {
       preset: Aura,
@@ -34,14 +36,3 @@ export function unmount() {
   app.unmount();
   app = null;
 }
-
-// createApp(App)
-//   .use(PrimeVue, {
-//     theme: {
-//       preset: Aura,
-//       options: {
-//         darkModeSelector: false,
-//       },
-//     },
-//   })
-//   .mount('#app');

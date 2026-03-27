@@ -1,0 +1,1 @@
+export { BarbershopDetailsResponse } from './BarbershopDetailsResponse';
