@@ -6,8 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import Box from '@/shared/Box/index.vue';
-import type { DetailsFieldProps } from './types';
+import { Box } from '@/shared/common';
+import type { InfoItemProps } from './InfoItemProps';
 
-defineProps<DetailsFieldProps>();
+defineProps<InfoItemProps>();
 </script>

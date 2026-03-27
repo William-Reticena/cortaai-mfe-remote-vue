@@ -16,7 +16,5 @@
 </template>
 
 <script setup lang="ts">
-import Box from '@/shared/Box/index.vue';
-
-// defineProps<DetailsFieldProps>();
+import { Box } from '@/shared/common';
 </script>

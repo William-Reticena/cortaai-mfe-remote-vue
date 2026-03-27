@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import BarbershopDashboard from '../views/BarbershopDashboard/index.vue';
+import BarbershopDashboard from '../views/BarbershopDashboard/BarbershopDashboard.vue';
 import Teste from '../views/Teste/index.vue';
 
 export const router = createRouter({

@@ -11,5 +11,7 @@
 </template>
 
 <script setup lang="ts" generic="T">
-defineProps<{ each: T[]; getKey?: (item: T, index: number) => string | number }>();
+import type { ForProps } from './ForProps';
+
+defineProps<ForProps<T>>();
 </script>

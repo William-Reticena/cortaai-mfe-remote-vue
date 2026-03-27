@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { BoxProps } from '../types';
+import type { BoxProps } from './BoxProps';
 
 defineOptions({ name: 'Box' });
 withDefaults(defineProps<BoxProps>(), { as: 'div' });
