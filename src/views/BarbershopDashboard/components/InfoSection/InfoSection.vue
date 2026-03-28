@@ -15,7 +15,7 @@
       </Box>
 
       <Box class="mt-4">
-        <HStack class="items-center gap-2 text-sm">
+        <HStack align-items="center" gap="4">
           <Typography variant="body3"> STATUS </Typography>
 
           <StatusBadge :is-open="details.inOpen" />

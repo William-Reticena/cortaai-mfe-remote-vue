@@ -2,7 +2,7 @@
   <Box>
     <Typography variant="body3" class="mb-2"> {{ label }} </Typography>
 
-    <HStack align="center" gap="2">
+    <HStack align-items="center" gap="2">
       <If :condition="!!icon">
         <component :is="icon" v-bind="iconProps" />
       </If>

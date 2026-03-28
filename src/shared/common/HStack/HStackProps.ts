@@ -1,5 +1,5 @@
 export type HStackProps = {
-  gap?: string;
-  align?: 'start' | 'center' | 'end';
+  gap?: string | number;
+  alignItems?: 'start' | 'center' | 'end';
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 };

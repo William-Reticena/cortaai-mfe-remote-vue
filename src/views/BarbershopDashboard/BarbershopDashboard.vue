@@ -6,7 +6,7 @@
       <template v-if="barbershopData">
         <InfoSection :details="barbershopData.barbershopDetails" />
 
-        <BarberSection />
+        <BarberSection :barbershopData="barbershopData" />
       </template>
     </template>
 
