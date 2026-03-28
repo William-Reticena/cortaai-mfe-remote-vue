@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
 :root {
+  --primary: #f9941f;
+
   --status-open: #16a34a;
+  --status-closed: #dc2626;
 }

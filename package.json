@@ -10,6 +10,7 @@
     "remote": "vue-tsc -b && vite build && vite preview"
   },
   "dependencies": {
+    "@lucide/vue": "^1.7.0",
     "@primeuix/themes": "^2.0.3",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/vue-query": "^5.95.2",
