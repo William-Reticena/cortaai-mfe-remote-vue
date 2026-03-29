@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Box } from '..';
+import { Box } from '../..';
 import type { HStackProps } from './HStackProps';
 
 const props = withDefaults(defineProps<HStackProps>(), {

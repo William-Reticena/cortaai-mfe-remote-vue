@@ -21,9 +21,17 @@
     </template>
 
     <template v-else-if="value === 'Serviços'">
+      <Typography variant="h3" class="mb-4"> Serviços </Typography>
+
       <ServiceForm />
 
-      <ServiceSection />
+      <If :condition="barbershopData && barbershopData.offerServices && barbershopData.offerServices.length > 0">
+        <ServiceSection :offerServices="barbershopData?.offerServices ?? []" />
+
+        <template #else>
+          <Box class="text-center text-gray-500">Nenhum serviço encontrado.</Box>
+        </template>
+      </If>
     </template>
 
     <template v-else-if="value === 'Agendamentos'">
@@ -40,7 +48,7 @@ import { SelectButton } from 'primevue';
 
 import { useBarbershopDetails } from '@/composables/useBarbers';
 
-import { Box, If } from '@/shared/common';
+import { Box, If, Typography } from '@/shared/common';
 import BarberSection from './components/BarberSection/BarberSection.vue';
 import InfoSection from './components/InfoSection/InfoSection.vue';
 import ScheduleSection from './components/ScheduleSection/ScheduleSection.vue';

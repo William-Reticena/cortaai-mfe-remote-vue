@@ -1,20 +1,25 @@
 <template>
-  <Card class="mt-6">
-    <template #title>Serviços</template>
-    <template #content>
-      <Box class="flex flex-col gap-4">
-        <For :each="[1, 2, 3, 4, 5]" :getKey="(item) => item">
-          <template #default="{ item }">
-            <Box class="flex items-center gap-4"> Serviço {{ item }} </Box>
-          </template>
-        </For>
-      </Box>
-    </template>
-  </Card>
+  <VStack class="w-full border rounded-xl cursor-pointer mt-6 border-gray-300">
+    <For :each="offerServices" :getKey="(item) => item.id">
+      <template #default="{ item }">
+        <HStack justify="between" align-items="center" class="w-full p-4 border-b last:border-0 border-gray-300">
+          <Box>
+            <Typography> {{ item.nmService }} </Typography>
+            <Typography variant="body3">{{ item.nrDurationMinutes }} min</Typography>
+          </Box>
+
+          <Typography class="text-(--primary) font-semibold"> {{ MaskUtils.formatToBRL(item.vlPrice) }}</Typography>
+        </HStack>
+      </template>
+    </For>
+  </VStack>
 </template>
 
 <script setup lang="ts">
-import { Card } from 'primevue';
+import { Box, For, HStack, Typography, VStack } from '@/shared/common';
+import type { ServiceSectionProps } from './ServiceSectionProps';
 
-import { Box, For } from '@/shared/common';
+import { MaskUtils } from '@/utils/MaskUtils';
+
+defineProps<ServiceSectionProps>();
 </script>
