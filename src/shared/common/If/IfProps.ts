@@ -1,6 +1,5 @@
 export type IfProps = {
-  condition: Item | Items | boolean;
-  elseCondition?: any;
+  condition?: Item | Items | boolean | object;
 };
 
 type Item = string | number | boolean | object;

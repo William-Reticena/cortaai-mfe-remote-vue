@@ -45,13 +45,7 @@ const justifyClasses: Record<string, string> = {
   evenly: 'justify-evenly',
 };
 
-const gapClass = computed(() => {
-  if (typeof props.gap === 'number') {
-    return gapClasses[props.gap] || '';
-  }
-
-  return props.gap || '';
-});
+const gapClass = computed(() => gapClasses[Number(props.gap)] || '');
 const alignClass = computed(() => alignClasses[props.alignItems] || 'items-start');
 const justifyClass = computed(() => justifyClasses[props.justify] || 'justify-start');
 </script>

@@ -3,11 +3,21 @@
     <SelectButton v-model="value" :options="options" fluid class="mb-6" />
 
     <template v-if="value === 'Informações'">
-      <template v-if="barbershopData">
-        <InfoSection :details="barbershopData.barbershopDetails" />
+      <If :condition="!!barbershopData && !!barbershopData.barbershopDetails">
+        <InfoSection :details="barbershopData!.barbershopDetails" />
 
-        <BarberSection :barbershopData="barbershopData" />
-      </template>
+        <template #else>
+          <Box class="text-center text-gray-500">Nenhum dado da barbearia encontrado.</Box>
+        </template>
+      </If>
+
+      <If :condition="barbershopData && barbershopData.barbers && barbershopData.barbers.length > 0">
+        <BarberSection :barbershopData="barbershopData!" />
+
+        <template #else>
+          <Box class="text-center text-gray-500">Nenhum barbeiro encontrado.</Box>
+        </template>
+      </If>
     </template>
 
     <template v-else-if="value === 'Serviços'">
@@ -30,7 +40,7 @@ import { SelectButton } from 'primevue';
 
 import { useBarbershopDetails } from '@/composables/useBarbers';
 
-import { Box } from '@/shared/common';
+import { Box, If } from '@/shared/common';
 import BarberSection from './components/BarberSection/BarberSection.vue';
 import InfoSection from './components/InfoSection/InfoSection.vue';
 import ScheduleSection from './components/ScheduleSection/ScheduleSection.vue';

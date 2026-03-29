@@ -2,7 +2,7 @@
   <template v-if="isTruthy(condition)">
     <slot />
   </template>
-  <template v-else-if="elseCondition">
+  <template v-else>
     <slot name="else" />
   </template>
 </template>
