@@ -10,7 +10,7 @@
               <Box class="flex items-center gap-4"> Agendamento {{ item }} </Box>
               <Box class="flex items-center gap-4">
                 <Box>Cliente {{ item }}</Box>
-                <StatusBadge />
+                <StatusBadge :isOpen="false" />
               </Box>
             </Box>
           </template>
