@@ -1,6 +1,7 @@
 import { computed } from 'vue';
-import { useQuery } from '@tanstack/vue-query';
+import { useMutation, useQuery } from '@tanstack/vue-query';
 import { BarbersApi } from '@/api/BarberApi';
+import type { CreateOfferServiceRequest } from '@/shared/dtos/request';
 
 export const useBarbershopDetails = (id: number | string) => {
   const idNumber = computed(() => Number(id));
@@ -10,4 +11,13 @@ export const useBarbershopDetails = (id: number | string) => {
     enabled: computed(() => !!id && !isNaN(idNumber.value)),
     queryFn: () => BarbersApi.getBarbershopDetails(idNumber.value),
   });
+};
+
+export const useCreateOfferService = () => {
+  const mutation = useMutation({
+    mutationKey: ['createOfferService'],
+    mutationFn: (request: CreateOfferServiceRequest) => BarbersApi.createOfferService(request),
+  });
+
+  return mutation;
 };

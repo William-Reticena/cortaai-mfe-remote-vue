@@ -18,7 +18,7 @@
       </Box>
 
       <HStack gap="2">
-        <Button label="Salvar" size="small">
+        <Button label="Salvar" size="small" @click="sendForm(form)" :disabled="!form.name || !form.duration || !form.price">
           <template #icon>
             <Save class="w-4 h-4" />
           </template>
@@ -35,6 +35,15 @@ import { Button, Card, InputNumber, InputText } from 'primevue';
 import { Save } from '@lucide/vue';
 
 import { Box, HStack, Typography } from '@/shared/common';
+import { useCreateOfferService } from '@/composables/useBarbers';
+
+const { mutate } = useCreateOfferService();
 
 const form = ref({ name: null, duration: null, price: null });
+
+const sendForm = (form: { name: string | null; duration: number | null; price: number | null }) => {
+  if (form.name && form.duration && form.price) {
+    mutate({ nmService: form.name, nrDurationMinutes: form.duration, vlPrice: form.price });
+  }
+};
 </script>
