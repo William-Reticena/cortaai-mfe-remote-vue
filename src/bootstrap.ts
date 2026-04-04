@@ -5,7 +5,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 import App from './App.vue';
 
 import './style.css';
-import { router } from './routes';
+import { createAppRouter } from './routes';
 
 let app: VueApp<Element> | null = null;
 
@@ -15,6 +15,8 @@ export type MountProps = {
 
 export function mount({ container }: MountProps) {
   if (app) return;
+
+  const router = createAppRouter();
 
   app = createApp(App);
   app.use(router);
