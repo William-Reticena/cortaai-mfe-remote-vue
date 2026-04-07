@@ -1,6 +1,7 @@
-import { BarbershopDetailsResponse } from '@/shared/dtos/response';
 import api from './client';
-import { CreateOfferServiceRequest } from '@/shared/dtos/request';
+
+import { BarbershopDetailsResponse, UpdateBarbershopDetailsResponse } from '@/shared/dtos/response';
+import { CreateOfferServiceRequest, UpdateBarbershopDetailsRequest } from '@/shared/dtos/request';
 
 export class BarbersApi {
   static async getBarbershopDetails(id: number) {
@@ -12,5 +13,11 @@ export class BarbersApi {
   static async createOfferService(request: CreateOfferServiceRequest) {
     const response = await api.post('/offers', request, { headers: { Authorization: 1 } });
     return response.data;
+  }
+
+  static async updateBarbershopDetails(request: UpdateBarbershopDetailsRequest) {
+    const response = await api.put<UpdateBarbershopDetailsResponse>('/barbershops', request, { headers: { Authorization: 1 } });
+
+    return new UpdateBarbershopDetailsResponse(response.data);
   }
 }

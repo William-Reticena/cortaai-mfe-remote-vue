@@ -6,6 +6,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import { Box } from '@/shared/common';
 import type { StatusBadgeProps } from './StatusBadgeProps';
 
@@ -26,5 +28,5 @@ const statusStyles = {
   },
 };
 
-const style = isOpen ? statusStyles.open : statusStyles.closed;
+const style = computed(() => (isOpen ? statusStyles.open : statusStyles.closed));
 </script>

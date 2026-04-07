@@ -15,6 +15,7 @@ export class BarbershopDetails {
   readonly dsAddress: string;
   readonly dsPhone: string;
   readonly inOpen: boolean;
+  readonly hrOpensAt: string;
   readonly hrClosesAt: string;
   readonly dtNextAvailableSchedule: Date;
 
@@ -23,6 +24,7 @@ export class BarbershopDetails {
     this.dsAddress = data.dsAddress;
     this.dsPhone = data.dsPhone;
     this.inOpen = data.inOpen;
+    this.hrOpensAt = data.hrOpensAt;
     this.hrClosesAt = data.hrClosesAt;
     this.dtNextAvailableSchedule = new Date(data.dtNextAvailableSchedule);
   }
