@@ -12,6 +12,9 @@ export default defineConfig({
     federation({
       name: 'cortaai_mfe_remote_vue',
       filename: 'remoteEntry.js',
+      remotes: {
+        'react-app': 'http://localhost:9000/assets/remoteEntry.js',
+      },
       exposes: {
         './bootstrap': './src/bootstrap.ts',
       },

@@ -1,5 +1,27 @@
 <template>
   <Box class="max-w-3xl mx-auto p-4">
+    <!-- User Data Display -->
+    <div v-if="userData" class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+      <Typography variant="h4" class="mb-2">
+        👤 {{ userData.nmUser }}
+      </Typography>
+      <div class="text-sm text-gray-600">
+        <p><strong>Email:</strong> {{ userData.dsEmail }}</p>
+        <p><strong>Telefone:</strong> {{ userData.dsPhone }}</p>
+        <p><strong>Role:</strong> {{ userData.tpRole }}</p>
+      </div>
+    </div>
+
+    <!-- Debug Info -->
+    <div v-if="isLoading" class="mb-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+      <Typography variant="h5">⏳ Carregando dados do usuário...</Typography>
+    </div>
+
+    <div v-if="!isLoading && !userData" class="mb-6 p-4 bg-red-50 rounded-lg border border-red-200">
+      <Typography variant="h5">⚠️ Nenhum usuário autenticado</Typography>
+      <p class="text-sm text-gray-600 mt-2">Faça login no Host para ver seus dados aqui.</p>
+    </div>
+
     <SelectButton v-model="value" :options="options" fluid class="mb-6" />
 
     <template v-if="value === 'Informações'">
@@ -47,6 +69,7 @@ import { ref } from 'vue';
 import { SelectButton } from 'primevue';
 
 import { useBarbershopDetails } from '@/composables/useBarbers';
+import { useUserDataCache } from '@/composables/useUserDataCache';
 
 import { Box, If, Typography } from '@/shared/common';
 import BarberSection from './components/BarberSection/BarberSection.vue';
@@ -59,4 +82,8 @@ const value = ref('Informações');
 const options = ['Informações', 'Serviços', 'Agendamentos'];
 
 const { data: barbershopData } = useBarbershopDetails(1);
+const { userData, isLoading } = useUserDataCache();
+
+console.log('👤 [BarbershopDashboard] userData:', userData.value);
+console.log('⏳ [BarbershopDashboard] isLoading:', isLoading.value);
 </script>
