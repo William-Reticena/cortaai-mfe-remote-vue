@@ -1,6 +1,8 @@
 import { mount } from './bootstrap';
 import type { MeResponse, UserDataCacheService } from 'react-app/bridge';
 
+const isDevMockEnabled = import.meta.env.DEV && import.meta.env.VITE_USE_DEV_USER_MOCK !== 'false';
+
 const container = document.getElementById('app');
 
 type BridgeWindow = Window & {
@@ -50,7 +52,17 @@ const bootstrap = async () => {
 
   const service = await getUserDataCacheService();
   if (!service) {
+    if (isDevMockEnabled) {
+      mount({ container });
+      return;
+    }
+
     setLoadingState(container, 'Nao foi possivel conectar ao host.');
+    return;
+  }
+
+  if (isDevMockEnabled && !service.getUserData()) {
+    mount({ container });
     return;
   }
 

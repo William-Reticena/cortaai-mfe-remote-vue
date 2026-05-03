@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 import type { MeResponse, UserDataCacheService } from 'react-app/bridge';
+import { DEV_FALLBACK_USER } from '@/mock/userData';
+
+const isDevMockEnabled = import.meta.env.DEV && import.meta.env.VITE_USE_DEV_USER_MOCK !== 'false';
 
 type BridgeWindow = Window & {
   __REACT_APP_BRIDGE__?: {
@@ -57,17 +60,26 @@ export const useUserDataStore = defineStore('userData', {
         const service = await this.loadService();
 
         if (!service) {
+          if (isDevMockEnabled) {
+            this.userData = DEV_FALLBACK_USER;
+            this.isInitialized = true;
+          }
+
           this.isLoading = false;
           return;
         }
 
         this.userData = service.getUserData();
+        if (!this.userData && isDevMockEnabled) {
+          this.userData = DEV_FALLBACK_USER;
+        }
+
         this.unsubscribeUserData = service.onUserDataUpdate((data) => {
           this.userData = data;
         });
 
         this.unsubscribeCacheCleared = service.onCacheCleared(() => {
-          this.userData = null;
+          this.userData = isDevMockEnabled ? DEV_FALLBACK_USER : null;
         });
 
         this.isInitialized = true;
