@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import BarbershopDashboard from '../views/BarbershopDashboard/BarbershopDashboard.vue';
-import Teste from '../views/Teste/index.vue';
 
 export function createAppRouter() {
   return createRouter({
@@ -9,10 +8,6 @@ export function createAppRouter() {
       {
         path: '/',
         component: BarbershopDashboard,
-      },
-      {
-        path: '/dashboard',
-        component: Teste,
       },
       {
         path: '/:pathMatch(.*)*',

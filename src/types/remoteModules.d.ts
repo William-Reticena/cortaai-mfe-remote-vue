@@ -17,6 +17,7 @@ declare module 'react-app/bridge' {
     dsPhone: string;
     dsEmail: string;
     tpRole: number;
+    idBarbershop?: number;
   }
 
   export class UserDataCacheService {
