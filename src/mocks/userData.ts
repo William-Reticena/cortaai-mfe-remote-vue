@@ -5,5 +5,5 @@ export const DEV_FALLBACK_USER: MeResponse = {
   dsPhone: '44999333968',
   dsEmail: 'wreticena@cortaai.com.br',
   tpRole: 2,
-  idBarbershop: 1,
+  // idBarbershop: 1,
 };

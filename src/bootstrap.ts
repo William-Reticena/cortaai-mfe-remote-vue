@@ -6,7 +6,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 import App from './App.vue';
 
 import './style.css';
-import { createAppRouter } from './routes';
+import { createAppRouter } from './routes/router';
 
 let app: VueApp<Element> | null = null;
 

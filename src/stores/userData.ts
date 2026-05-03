@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import type { MeResponse, UserDataCacheService } from 'react-app/bridge';
-import { DEV_FALLBACK_USER } from '@/mock/userData';
+import { DEV_FALLBACK_USER } from '@/mocks/userData';
 
 const isDevMockEnabled = import.meta.env.DEV && import.meta.env.VITE_USE_DEV_USER_MOCK !== 'false';
 
