@@ -1,14 +1,18 @@
-import { computed } from 'vue';
+import { computed, toValue } from 'vue';
+import type { MaybeRefOrGetter } from 'vue';
 import { useMutation, useQuery } from '@tanstack/vue-query';
 import { BarbersApi } from '@/api/BarberApi';
+import { useUserDataStore } from '@/stores/userData';
 import type { CreateOfferServiceRequest, UpdateBarbershopDetailsRequest } from '@/shared/dtos/request';
 
-export const useBarbershopDetails = (id: number | string) => {
-  const idNumber = computed(() => Number(id));
+export const useBarbershopDetails = (id?: MaybeRefOrGetter<number | string | null | undefined>) => {
+  const userDataStore = useUserDataStore();
+  const resolvedId = computed(() => toValue(id) ?? userDataStore.barbershopId);
+  const idNumber = computed(() => Number(resolvedId.value));
 
   return useQuery({
-    queryKey: ['barbershop', idNumber.value],
-    enabled: computed(() => !!id && !isNaN(idNumber.value)),
+    queryKey: computed(() => ['barbershop', idNumber.value]),
+    enabled: computed(() => Number.isFinite(idNumber.value) && idNumber.value > 0),
     queryFn: () => BarbersApi.getBarbershopDetails(idNumber.value),
   });
 };

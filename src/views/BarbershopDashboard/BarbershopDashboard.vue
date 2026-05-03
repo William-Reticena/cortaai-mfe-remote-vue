@@ -2,13 +2,12 @@
   <Box class="max-w-3xl mx-auto p-4">
     <!-- User Data Display -->
     <div v-if="userData" class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-      <Typography variant="h4" class="mb-2">
-        👤 {{ userData.nmUser }}
-      </Typography>
+      <Typography variant="h4" class="mb-2"> 👤 {{ userData.nmUser }} </Typography>
       <div class="text-sm text-gray-600">
         <p><strong>Email:</strong> {{ userData.dsEmail }}</p>
         <p><strong>Telefone:</strong> {{ userData.dsPhone }}</p>
         <p><strong>Role:</strong> {{ userData.tpRole }}</p>
+        <p><strong>Barbearia:</strong> {{ userData.idBarbershop }}</p>
       </div>
     </div>
 
@@ -65,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { SelectButton } from 'primevue';
 
 import { useBarbershopDetails } from '@/composables/useBarbers';
@@ -81,8 +80,9 @@ import ServiceSection from './components/ServiceSection/ServiceSection.vue';
 const value = ref('Informações');
 const options = ['Informações', 'Serviços', 'Agendamentos'];
 
-const { data: barbershopData } = useBarbershopDetails(1);
 const { userData, isLoading } = useUserDataCache();
+const barbershopId = computed(() => userData.value?.idBarbershop);
+const { data: barbershopData } = useBarbershopDetails(barbershopId);
 
 console.log('👤 [BarbershopDashboard] userData:', userData.value);
 console.log('⏳ [BarbershopDashboard] isLoading:', isLoading.value);
