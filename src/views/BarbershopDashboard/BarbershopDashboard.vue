@@ -35,7 +35,7 @@
     </template>
 
     <template v-else-if="tabSelected === 'Agendamentos'">
-      <Box> Agendamentos</Box>
+      <Box>Agendamentos</Box>
 
       <ScheduleSection />
     </template>
